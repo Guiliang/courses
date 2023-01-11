@@ -45,19 +45,28 @@
     <p> You are expected to write a python project that learns a model for image classification.
         The project uses a Minist dataset, which is a database of handwritten digits has a training set of 60,000 examples, and a test set of 10,000 examples.
         This project is based on python and <a href="https://pytorch.org/">PyTorch</a> (an open-source machine learning framework).
-        For the ease of implementation, the model architecture, loss functon and data loader have been provided.
+        <b>For the ease of implementation, the model architecture, loss functon and data loader have been provided</b> <a href="https://github.com/Guiliang/CSC1004-python-project">[here]</a>.
+        Please install the python package by following the instruction there.
         Students should implement the basic features including: </p>
     <ul>
-        <li><b>Training Function (30%): </b> Please implement the "train" function.
+        <li><b>Training Function (20%): </b> Please implement the "train" function.
             The train function should use training data (consisted of images-label pairs) to update the model parameters.
             The training <b>loss</b> should be record by a file (e.g., .txt file) after each update.
+            The training <b>loss and accuracy</b> should be print after each update.
         </li>
-        <li><b>Testing Function (30%): </b> Please implement the "test" function.
+        <li><b>Testing Function (20%): </b> Please implement the "test" function.
             The test function should use the testing data (consisted of <b>only images</b>).
             The testing <b>loss and accuracy</b> should be record by a file (e.g., .txt file) after each update.
         </li>
-        <li><b>Plotting Function (30%): </b> Please implement the "plot" function.
-            The plot function should generate the line charts based on the records training loss, testing loss and testing accuracy (i.e., generate three plots).
+        <li><b>Plotting Function (20%): </b> Please implement the "plot" function.
+            The plot function should generate the line charts based on the records training loss, testing loss and testing accuracy (i.e., generate three plots) for each run.
+            The plot should include the title and labels.
+        </li>
+        <li><b>Random Seed (10%): </b> Please include a random seed for each run.
+            The <a href="https://docs.dgl.ai/en/0.9.x/generated/dgl.dataloading.DataLoader.html">DataLoader</a> should use this random seed for generating data.
+            The training and testing results (accuracy and loss) should be record for each random seed.
+            Please use three random seeds (123, 321, 666) and implement three runs (on random seed for each run).
+            Please use the recorded results to plot the mean of training loss, testing loss and testing accuracy.
         </li>
         <li><b>Documentation (10%): </b> Please write a documentation explaining how do you implement the above functions.
         </li>
@@ -68,7 +77,7 @@
 
 <div id="Submission">
     <h3> 2. Submission </h3>
-    <p> Please submit the 1) generated plots, 2) python code and 3) documentation by compressing them into a zip file. </p>
+    <p> Please submit the 1) generated plots (12 plots, 3*3 for three runs and 3 for the mean results), 2) python code and 3) documentation by compressing them into a zip file. </p>
 </div>
 <hr>
 <!--<div id="resource">-->
