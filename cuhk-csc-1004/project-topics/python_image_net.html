@@ -49,12 +49,12 @@
         Please install the python package by following the instruction there.
         Students should implement the basic features including: </p>
     <ul>
-        <li><b>Training Function (20%): </b> Please implement the "train" function.
+        <li><b>Training Function (10%): </b> Please implement the "train" function.
             The train function should use training data (consisted of images-label pairs) to update the model parameters.
             The training <b>loss</b> should be record by a file (e.g., .txt file) after each update.
             The training <b>loss and accuracy</b> should be print after each update.
         </li>
-        <li><b>Testing Function (20%): </b> Please implement the "test" function.
+        <li><b>Testing Function (10%): </b> Please implement the "test" function.
             The test function should use the testing data (consisted of <b>only images</b>).
             The testing <b>loss and accuracy</b> should be record by a file (e.g., .txt file) after each update.
         </li>
@@ -62,12 +62,14 @@
             The plot function should generate the line charts based on the records training loss, testing loss and testing accuracy (i.e., generate three plots) for each run.
             The plot should include the title and labels.
         </li>
-        <li><b>Random Seed (10%): </b> Please include a random seed for each run.
+        <li><b>Random Seed (20%): </b> Please include a random seed for each run.
             The <a href="https://docs.dgl.ai/en/0.9.x/generated/dgl.dataloading.DataLoader.html">DataLoader</a> should use this random seed for generating data.
             The training and testing results (accuracy and loss) should be recorded for each random seed.
             Please use three random seeds (123, 321, 666) and implement three runs (one random seed for each run).
             Please use the recorded results to plot the mean of training loss, testing loss and testing accuracy.
         </li>
+        <li><b>Python Multi-Processing (30%): </b> Please improve the program by adding Python multi-processing into the code.
+            The multi-processing should increase the efficiency of running by using one random seed for each process (use one run with three process instead of three runs), although it might take more resource.</li>
         <li><b>Documentation (10%): </b> Please write a documentation explaining how do you implement the above functions.
         </li>
     </ul>
