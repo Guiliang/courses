@@ -68,7 +68,7 @@
             <li>
                <strong>Preliminary Gomoku Game Rules (10 Pts)</strong>: The logical layer of your program should support the following game rules:
                <ul>
-                  <li>The game is played on a <strong>20x20</strong> board.</li>
+                  <li>The game is played on a 15x15 board.</li>
                   <li>Two players take turns to place a stone on an empty intersection.</li>
                   <li>Black plays first, and the players alternate in placing stones on an empty intersection, i.e. those intersections with a stone on it cannot be placed again.</li>
                   <li>The winner is the first player to get an unbroken row of five stones horizontally, vertically, or diagonally.</li>
@@ -81,17 +81,17 @@
                <ul>
                   <li>The game board and the stones placed on it.</li>
                   <li>The current player that has the right to place a stone.</li>
-                  <li>The winner and loser (black and while players) once the game is finished.</li>
+                  <li>The winner once the game is finished.</li>
 <!--                  <li>The game board status, i.e. the stones placed on the board.</li>-->
-                  <li>The game settings, including the number of movements and the maximum length of all unbroken row for each user.</li>
-                  <li>The game menu with a reset button (i.e. the "start a new game" button) and an exit button.</li>
+                  <li>The game settings, i.e. the size of the board and the player names.</li>
+                  <li>The game menu, at least with the reset button (i.e. the "start a new game" button, or "reset" for short) and the exit button.</li>
                </ul>
             </li>
             <li>
-               <strong>Direct Mouse Control (5 Pts)</strong>: The GUI should support direct mouse control, i.e. the player can place a stone by clicking on the board, rathe than typing in the (row, column) tuple. Rigorously speaking, it's part of the GUI design, but it's so important that we count the scores separately, as it involves event listening. The features are listed below:
+               <strong>Direct Mouse Control (10 Pts)</strong>: The GUI should support direct mouse control, i.e. the player can place a stone by clicking on the board, rathe than typing in the (row, column) tuple. Rigorously speaking, it's part of the GUI design, but it's so important that we count the scores separately, as it involves event listening. The features are listed below:
                <ul>
                   <li>The player can place a stone by clicking some intersection on the board. There should be some tolerance for the mouse click, i.e. the player can click on the intersection or the area around it.</li>
-                  <li>A player can only place a stone on an empty intersection. If a player clicks on an intersection that already has a stone, the program should reject the action and display a warning message.</li>
+                  <li>The player can only place a stone on an empty intersection. If the player clicks on an intersection with a stone on it, the program should at least ignore the click.</li>
                </ul>
             </li>
 <!--            <li>-->
@@ -104,7 +104,7 @@
 <!--            </li>-->
          </ul>
          <h2 id="2-advanced-features">2. Advanced Features </h2>
-         <p>Note that you can earn 75% of the scores finishing all three projects with the only basic features.
+         <p>Note that you can earn 90% of the scores finishing all three projects with the only basic features.
             That is to say, to get a higher score, you may want to consider adding some advanced features:
             <font color="Brown">(Please pick some features from the followings.
                The corresponding bonus scores will be added to your final score,

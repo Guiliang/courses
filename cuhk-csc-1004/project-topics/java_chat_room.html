@@ -83,16 +83,16 @@
                <strong>Chat Room Functions (10 pts)</strong>
 <!--               The Java chat room should have the following functions:-->
                <ul>
-                  <li>When creating a new chat room command-line interface, the user is able to input an ID via keyboard input, which will be displayed before each message the user sends.</li>
-                  <li>The user is able to send messages via keyboard input and view the messages of other users (which are sent by other command-line interfaces).</li>
+                  <li>When creating a new chat room command-line interface, the system will automatically assign this user an ID of 5 digits (e.g., 01234). In the meantime, the user is able to input a username via keyboard input. Both the ID and the username should be displayed before each message the user sends.</li>
+                   <li>The user is able to send messages via keyboard input and view the messages of other users (which are sent by other command-line interfaces).</li>
                   <li>The <a href="https://en.wikipedia.org/wiki/Graphical_user_interface">graphical user interface</a> is <strong>NOT</strong> required since this is the first project for CSC1004.</li>
                </ul>
             </li>
-            <li><strong> Message Display (10 pts)</strong>:
+            <li><strong> Message Display (5 pts)</strong>:
                <ul>
-                  <li>Your program can display the current time when a user enters the chat room.</li>
-                  <li>You program can display the current time when a user sends or receives a message.</li>
-                  <li>You program can display the number of messages that have been sent by a user when she/he talks.</li>
+                  <li>Your program can display the names and the ids of other users when a new user enters the chat room (only shown to the new user).</li>
+                   <li>Your program can display the name and ID of the user when he or her is leaving the chat room (shown to all users in the chatroom).</li>
+                  <li>You program can display the current time when a user sends or receives a message (shown to all users in the chatroom).</li>
                </ul>
             </li>
 <!--            <li>-->
@@ -105,7 +105,7 @@
 <!--            </li>-->
          </ul>
           <h2 id="2-advanced-features">2. Advanced Features </h2>
-         <p>Note that you can earn 90% of the scores by finishing all three projects with the only basic features.
+         <p>Note that you can earn 75% of the scores by finishing all three projects with the only basic features.
             That is to say, to get a higher score, you may want to consider adding some advanced features:
             <font color="Brown">(Please pick some features from the followings.
                The corresponding bonus scores will be added to your final score,
@@ -113,10 +113,10 @@
                That's to say, you can get at most 100 pts by picking two 5 pts features or one 10 pts feature.)</font>
          </p>
          <ul>
-<!--            <li><strong>Time Display (5%)</strong>: You can display a time record when a user enters the chat room (i.e., creates a new command-line interface) and sends/receives a message.</li>-->
+            <li><strong>Receiver Display (5%)</strong>: The user can check the receivers of his or her last message. In specific, by inputting the command "[receiver]" to the program, the program can display the name and id of receivers at the time this message was sent. The entering and leaving of chatroom users should not influence this function.</li>
             <li><strong>Chat Record Storage (5 pts) </strong>: The user can save all the chat records to a local file so that a user can view all messages even before entering the chat room.</li>
             <li><strong> Search Function (5 pts) </strong>: The user can search chat logs by keyword or username. Hint: you can specify a certain keyboard input pattern to start searching. For example, let "#search (keyword or username)" be the input pattern.</li>
-             <li> <strong>Message Recall (5 pts) </strong>. The user can recall the message(s) that you have just sent to the chat room (i.e., delete messages from the chat room so that all users can no longer view that message). Hint: you can specify a certain keyboard input pattern to recall your message(s).</li>
+<!--             <li><strong>Message Recall (5 pts) </strong>. The user can recall the message(s) that you have just sent to the chat room (i.e., delete messages from the chat room so that all users can no longer view that message). Hint: you can specify a certain keyboard input pattern to recall your message(s).</li>-->
          </ul>
          <h2 id="3-submission">3. Submission </h2>
          <p>Submission should be made at the <a href="https://bb.cuhk.edu.cn/">blackboard system</a>. You need to submit:</p>
