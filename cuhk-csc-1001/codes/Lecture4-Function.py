@@ -177,14 +177,20 @@ def while_loop_string():
 # 5. FILE OPERATIONS
 # ==========================================================
 
-def count_lines(filename):
+def count_lines(filename, read_all=False):
     """Count how many lines are in a text file."""
     print("=== Count Lines in File ===")
     try:
-        with open(filename, 'r') as file:
-            line_count = 0
+        file = open(filename, 'r')
+        line_count = 0
+        if read_all:
+            all_lines = file.read()
+            print(all_lines)
+        else:
             for line in file:
+                print(line)
                 line_count = line_count + 1
+        file.close()
         print("'" + filename + "' has", line_count, "lines.\n")
         return line_count
     except FileNotFoundError:
@@ -196,10 +202,10 @@ def search_in_file(filename, keyword):
     """Print lines containing a specific keyword."""
     print("=== Searching for", repr(keyword), "in", filename, "===")
     try:
-        with open(filename, 'r') as file:
-            for line in file:
-                if keyword.lower() in line.lower():
-                    print(line.strip())
+        file = open(filename, 'r')
+        for line in file:
+            if keyword.lower() in line.lower():
+                print(line.strip())
     except FileNotFoundError:
         print("File not found:", filename)
     print("")
@@ -209,9 +215,12 @@ def write_lowercase_file(input_file, output_file):
     """Read input file, convert to lowercase, and write to new file."""
     print("=== Writing Lowercase File ===")
     try:
-        with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
-            for line in infile:
-                outfile.write(line.lower())
+        infile =open(input_file, 'r')
+        outfile = open(output_file, 'w')
+        for line in infile:
+            outfile.write(line.lower())
+        infile.close()
+        outfile.close()
         print("Lowercase content written to", repr(output_file))
         print("")
     except FileNotFoundError:
@@ -225,23 +234,23 @@ def write_lowercase_file(input_file, output_file):
 
 if __name__ == "__main__":
     # 1. Function Basics
-    demo_rectangle_areas()
+    # demo_rectangle_areas()
 
     # 2. Salary Calculation
-    demo_salary()
+    # demo_salary()
 
     # 3. Tax Function
-    demo_taxes()
+    # demo_taxes()
 
     # 4. Strings
-    string_operations()
-    count_letter_a()
-    while_loop_string()
+    # string_operations()
+    # count_letter_a()
+    # while_loop_string()
 
     # 5. File Handling (requires existing text files)
     # You can uncomment these to test with your own files
     count_lines("example.txt")
-    search_in_file("example.txt", "Python")
-    write_lowercase_file("example.txt", "output.txt")
+    # search_in_file("example.txt", "Python")
+    # write_lowercase_file("example.txt", "output.txt")
 
     print("=== End of Lecture 4 Demonstrations ===")
