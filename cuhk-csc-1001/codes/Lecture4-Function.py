@@ -234,23 +234,23 @@ def write_lowercase_file(input_file, output_file):
 
 if __name__ == "__main__":
     # 1. Function Basics
-    # demo_rectangle_areas()
+    demo_rectangle_areas()
 
     # 2. Salary Calculation
-    # demo_salary()
+    demo_salary()
 
     # 3. Tax Function
-    # demo_taxes()
+    demo_taxes()
 
     # 4. Strings
-    # string_operations()
-    # count_letter_a()
-    # while_loop_string()
+    string_operations()
+    count_letter_a()
+    while_loop_string()
 
     # 5. File Handling (requires existing text files)
     # You can uncomment these to test with your own files
     count_lines("example.txt")
-    # search_in_file("example.txt", "Python")
-    # write_lowercase_file("example.txt", "output.txt")
+    search_in_file("example.txt", "Python")
+    write_lowercase_file("example.txt", "output.txt")
 
     print("=== End of Lecture 4 Demonstrations ===")
