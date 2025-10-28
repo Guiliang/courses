@@ -1,62 +1,65 @@
 """
 ==========================================================
-Lecture 6: Object Oriented Programming
+Lecture 6: Object-Oriented Programming
 Instructor: Prof. Guiliang Liu
 Reconstructed & Annotated by ChatGPT
 ==========================================================
 
-This program demonstrates:
- 1. Objects and classes
- 2. Constructors (__init__) and self
- 3. Public vs private data fields
- 4. Abstraction and encapsulation
- 5. Practical Example Classes:
-    - Circle
-    - TV
-    - BMI
-    - Rectangle
-    - Stock
+Contents of this file:
+ 1. Object identity and type()
+ 2. Variables as references
+ 3. Class definition, self, and constructor
+ 4. Example: Circle class
+ 5. Example: TV class (mutable objects)
+ 6. Practice 1 – Mutable object output
+ 7. Hiding and protecting data with private fields
+ 8. Practice 2 – Private field problem and fix
+ 9. Function abstraction (isPrime)
+10. Class abstraction and encapsulation (BMI class)
+11. Practice 3 – Rectangle class
+12. Practice 4 – Stock class
 ==========================================================
 """
 
 # ==========================================================
-# 1. OBJECTS AND BASIC FUNCTIONS (id() and type())
+# 1. Everything is an Object
 # ==========================================================
 
-print("=== Objects and Basic Info ===")
-
+print("=== 1. Object Identity and Type ===")
 x = 10
 y = "Python"
+
 print("id(x):", id(x))
-print("type(x):", type(x))
 print("id(y):", id(y))
+print("type(x):", type(x))
 print("type(y):", type(y))
 print("")
 
 # ==========================================================
-# 2. EVERYTHING IS AN OBJECT
+# 2. Variable is only a reference
 # ==========================================================
 
-print("=== Everything is an Object ===")
+print("=== 2. Variable as a Reference ===")
 a = [1, 2, 3]
-print("List a:", a)
-print("id(a):", id(a), "type(a):", type(a))
-b = a  # variable is only a reference
-print("b refers to same object:", b is a)
+b = a
+print("Before modification -> a:", a, "b:", b)
+b.append(4)
+print("After modification -> a:", a, "b:", b)
+print("a and b reference same object:", a is b)
+print("id(a):", id(a), "id(b):", id(b))
 print("")
 
 # ==========================================================
-# 3. DEFINING A CLASS AND CREATING OBJECT INSTANCES
+# 3. Defining a class, the __init__ constructor, and self
 # ==========================================================
 
-print("=== Define a Simple Class Example ===")
+print("=== 3. Define a Basic Class: Human ===")
+
 
 class Human:
-    def __init__(self, name, height, weight):
-        # data fields (attributes)
-        self.name = name
-        self.height = height
-        self.weight = weight
+    def __init__(self, name, age):
+        self.name = name  # instance variable
+        self.age = age  # instance variable
 
     def eat(self):
         print(self.name, "is eating.")
@@ -64,20 +67,22 @@ class Human:
     def sleep(self):
         print(self.name, "is sleeping.")
 
-# Instantiate objects from class
-person1 = Human("Alice", 165, 55)
-person2 = Human("Bob", 180, 72)
+
+# Creating objects (instantiation)
+person1 = Human("Alice", 20)
+person2 = Human("Bob", 25)
 
 person1.eat()
 person2.sleep()
-print("Person1 height:", person1.height)
+print("person1 name:", person1.name)
 print("")
 
 # ==========================================================
-# 4. Circle CLASS Example (constructor, methods, default)
+# 4. Circle Example (default constructor argument)
 # ==========================================================
 
-print("=== Circle Class Example ===")
+print("=== 4. Circle Class Example ===")
+
 
 class Circle:
     def __init__(self, radius=1.0):
@@ -89,23 +94,24 @@ class Circle:
     def getPerimeter(self):
         return 2 * 3.14159 * self.radius
 
-# create circle objects
-c1 = Circle()
-c2 = Circle(3)
-print("Circle 1: radius =", c1.radius, "area =", c1.getArea())
-print("Circle 2: radius =", c2.radius, "area =", c2.getArea(), "perimeter =", c2.getPerimeter())
+
+c1 = Circle()  # default radius = 1.0
+c2 = Circle(3.0)  # radius = 3.0
+print("Circle 1 -> radius:", c1.radius, "area:", c1.getArea())
+print("Circle 2 -> radius:", c2.radius, "perimeter:", c2.getPerimeter())
 print("")
 
 # ==========================================================
-# 5. TV CLASS EXAMPLE (mutable attributes)
+# 5. Example: TV Class (mutable objects)
 # ==========================================================
 
-print("=== TV Class Example ===")
+print("=== 5. TV Class Example ===")
+
 
 class TV:
     def __init__(self):
         self.channel = 1
-        self.volume = 5
+        self.volumeLevel = 1
         self.on = False
 
     def turnOn(self):
@@ -115,48 +121,66 @@ class TV:
         self.on = False
 
     def setChannel(self, channel):
-        if self.on:
+        if self.on and 1 <= channel <= 120:
             self.channel = channel
 
-    def setVolume(self, volume):
-        if self.on:
-            self.volume = volume
+    def setVolume(self, volumeLevel):
+        if self.on and 1 <= volumeLevel <= 7:
+            self.volumeLevel = volumeLevel
 
     def showStatus(self):
         if self.on:
-            print("TV is on. Channel:", self.channel, "Volume:", self.volume)
+            print("TV is ON -> channel:", self.channel, "volume:", self.volumeLevel)
         else:
-            print("TV is off.")
+            print("TV is OFF")
 
-# Using the TV class
+
+# Example usage
 tv1 = TV()
 tv1.turnOn()
-tv1.setChannel(7)
-tv1.setVolume(10)
+tv1.setChannel(36)
+tv1.setVolume(4)
+tv1.showStatus()
+tv1.turnOff()
 tv1.showStatus()
 print("")
 
+# ==========================================================
+# 6. PRACTICE 1 — Mutable Object Output
+# ==========================================================
+
+print("=== Practice 1: Mutable Object Experiment ===")
+class NumberBox:
+    def __init__(self, value):
+        self.value = value
+
+
+boxA = NumberBox(10)
+boxB = boxA
+print("Before change -> boxA.value =", boxA.value, ", boxB.value =", boxB.value)
+boxB.value = 99
+print("After change -> boxA.value =", boxA.value, ", boxB.value =", boxB.value)
+print("Answer: both changed, because boxA and boxB reference the same object.\n")
 
 # ==========================================================
-# 6. PRIVATE DATA FIELDS AND ENCAPSULATION
+# 7. Hiding Data Fields (using private attributes)
 # ==========================================================
 
-print("=== Private Data Fields Example ===")
+print("=== 7. Private Data Field Concept ===")
+
 
 class BankAccount:
     def __init__(self, owner, balance):
-        self.__owner = owner       # private field
-        self.__balance = balance   # private field
+        self.__owner = owner
+        self.__balance = balance
 
     def deposit(self, amount):
         if amount > 0:
             self.__balance = self.__balance + amount
 
     def withdraw(self, amount):
-        if amount > 0 and amount <= self.__balance:
+        if 0 < amount <= self.__balance:
             self.__balance = self.__balance - amount
-        else:
-            print("Invalid withdrawal!")
 
     def getBalance(self):
         return self.__balance
@@ -164,26 +188,51 @@ class BankAccount:
     def getOwner(self):
         return self.__owner
 
-# Example usage
-account = BankAccount("Alice", 1000)
-print("Owner:", account.getOwner())
-print("Balance:", account.getBalance())
-account.deposit(500)
-account.withdraw(300)
-print("Final balance:", account.getBalance())
 
-# Cannot directly modify private data:
-# account.__balance = 9999  # This will not change the true balance
+account = BankAccount("Alice", 1000)
+account.deposit(200)
+account.withdraw(150)
+print("Account owner:", account.getOwner(), "balance:", account.getBalance())
 print("")
 
+# ==========================================================
+# 8. PRACTICE 2 — Private Field Problem and Fix
+# ==========================================================
+
+print("=== Practice 2: Private Field Fix ===")
+
+
+class CirclePrivate:
+    def __init__(self, radius):
+        self.__radius = radius  # private field
+
+    def getRadius(self):
+        return self.__radius
+
+    def setRadius(self, radius):
+        if radius > 0:
+            self.__radius = radius
+        else:
+            print("Radius must be positive.")
+
+
+# Incorrect attempt to modify private attribute
+c = CirclePrivate(5)
+c.__radius = 100  # creates new member, does NOT change private one
+print("Illegal direct modification attempt: getRadius() still gives", c.getRadius())
+
+# Correct fix:
+c.setRadius(8)
+print("After using setter, radius =", c.getRadius())
+print("Answer: direct modification fails because __radius is name‑mangled; use set/get methods.\n")
 
 # ==========================================================
-# 7. ABSTRACTION EXAMPLE
+# 9. Abstraction — Function Level
 # ==========================================================
 
-print("=== Abstraction Example ===")
+print("=== 9. Abstraction Example (Functions) ===")
 
-# Programmer 1 defines a reusable function
+
 def isPrime(n):
     if n <= 1:
         return False
@@ -192,31 +241,29 @@ def isPrime(n):
             return False
     return True
 
-# Programmer 2 uses the function without caring how it's implemented
+
 def printPrimeNumbers(limit):
-    count = 0
-    for i in range(2, limit + 1):
-        if isPrime(i):
-            print(i, end=" ")
-            count = count + 1
-    print("\nTotal primes:", count)
+    for num in range(2, limit + 1):
+        if isPrime(num):
+            print(num, end=" ")
+    print("\nDone printing primes up to", limit, "\n")
+
 
 printPrimeNumbers(30)
-print("")
-
 
 # ==========================================================
-# 8. CLASS ABSTRACTION AND ENCAPSULATION: BMI EXAMPLE
+# 10. Class Abstraction & Encapsulation — BMI Example
 # ==========================================================
 
-print("=== BMI Class Example ===")
+print("=== 10. BMI Class Example ===")
+
 
 class BMI:
     def __init__(self, name, age, weight, height):
         self.__name = name
         self.__age = age
-        self.__weight = weight  # in kilograms
-        self.__height = height  # in meters
+        self.__weight = weight  # kilograms
+        self.__height = height  # meters
 
     def getBMI(self):
         bmi = self.__weight / (self.__height ** 2)
@@ -236,17 +283,18 @@ class BMI:
     def getName(self):
         return self.__name
 
-# Using the BMI class
-person = BMI("Alice", 22, 65, 1.70)
-print("Name:", person.getName(), "BMI:", person.getBMI(), "Status:", person.getStatus())
+
+# Using the class
+p = BMI("John", 22, 68, 1.75)
+print("Name:", p.getName(), "BMI value:", p.getBMI(), "Status:", p.getStatus())
 print("")
 
-
 # ==========================================================
-# 9. PRACTICE: RECTANGLE CLASS
+# 11. PRACTICE 3 — Rectangle Class
 # ==========================================================
 
-print("=== Practice: Rectangle Class ===")
+print("=== Practice 3: Rectangle Class ===")
+
 
 class Rectangle:
     def __init__(self, width=1, height=2):
@@ -259,19 +307,22 @@ class Rectangle:
     def getPerimeter(self):
         return 2 * (self.width + self.height)
 
-# Testing Rectangle
+
+# Test rectangles
 r1 = Rectangle()
-r2 = Rectangle(4, 10)
-print("Rectangle 1: width =", r1.width, "height =", r1.height, "area =", r1.getArea())
-print("Rectangle 2: width =", r2.width, "height =", r2.height, "perimeter =", r2.getPerimeter())
-print("")
+r2 = Rectangle(4, 5)
 
+print("Rectangle 1 -> width:", r1.width, "height:", r1.height, "area:", r1.getArea())
+print("Rectangle 2 -> width:", r2.width, "height:", r2.height,
+      "perimeter:", r2.getPerimeter(), "area:", r2.getArea())
+print("Answer: default rectangle area 2, second rectangle area 20, perimeter 18.\n")
 
 # ==========================================================
-# 10. PRACTICE: STOCK CLASS
+# 12. PRACTICE 4 — Stock Class
 # ==========================================================
 
-print("=== Practice: Stock Class ===")
+print("=== Practice 4: Stock Class ===")
+
 
 class Stock:
     def __init__(self, symbol, name, previousClosingPrice, currentPrice):
@@ -280,7 +331,7 @@ class Stock:
         self.__previousClosingPrice = previousClosingPrice
         self.__currentPrice = currentPrice
 
-    # Get methods
+    # Getters
     def getSymbol(self):
         return self.__symbol
 
@@ -293,24 +344,29 @@ class Stock:
     def getCurrentPrice(self):
         return self.__currentPrice
 
-    # Set methods
+    # Setters
     def setPreviousClosingPrice(self, price):
         self.__previousClosingPrice = price
 
     def setCurrentPrice(self, price):
         self.__currentPrice = price
 
+    # Compute change percent
     def getChangePercent(self):
         change = (self.__currentPrice - self.__previousClosingPrice) / self.__previousClosingPrice * 100
         return change
 
-# Using the Stock class
-stock = Stock("AAPL", "Apple Inc.", 150.0, 155.5)
-print("Stock:", stock.getSymbol(), "-", stock.getName())
-print("Previous Price:", stock.getPreviousClosingPrice())
-print("Current Price:", stock.getCurrentPrice())
-print("Change Percent:", stock.getChangePercent(), "%")
-print("")
+
+# Example usage
+stock1 = Stock("AAPL", "Apple Inc.", 150.0, 155.5)
+print("Symbol:", stock1.getSymbol(), "Name:", stock1.getName())
+print("Prev:", stock1.getPreviousClosingPrice(), "Now:", stock1.getCurrentPrice())
+print("Change Percent:", stock1.getChangePercent(), "%")
+
+# Modify prices
+stock1.setCurrentPrice(160.0)
+print("After update -> New Change Percent:", stock1.getChangePercent(), "%")
+print("Answer: positive number indicates price increase.\n")
 
 # ==========================================================
-print("=== End of Lecture 6 Demonstrations ===")
+print("=== END OF LECTURE 6 – All Examples and Practices Completed ===")
