@@ -23,6 +23,7 @@ Topics:
 
 print("=== 1. Inheritance: GeometricObject Base Class ===")
 
+
 class GeometricObject:
     def __init__(self, color="white", filled=True):
         self.__color = color
@@ -43,17 +44,18 @@ class GeometricObject:
     def __str__(self):
         return "Color: " + self.__color + " and filled: " + str(self.__filled)
 
+
 # Test GeometricObject
 shape = GeometricObject("blue", True)
 print("Shape from GeometricObject ->", shape)
 print("")
-
 
 # ==========================================================
 # 2. Subclass example: Circle inherits from GeometricObject
 # ==========================================================
 
 print("=== 2. Circle Subclass Example ===")
+
 
 class Circle(GeometricObject):
     def __init__(self, radius=1.0, color="white", filled=True):
@@ -77,18 +79,19 @@ class Circle(GeometricObject):
     def __str__(self):
         return "Circle radius: " + str(self.__radius) + ", " + super().__str__()
 
+
 # Testing Circle class
 c = Circle(5, "red", False)
 print(c)
 print("Area:", c.getArea(), "Perimeter:", c.getPerimeter())
 print("")
 
-
 # ==========================================================
 # 3. Rectangle Subclass Example
 # ==========================================================
 
 print("=== 3. Rectangle Subclass Example ===")
+
 
 class Rectangle(GeometricObject):
     def __init__(self, width=1.0, height=1.0, color="gray", filled=True):
@@ -105,12 +108,12 @@ class Rectangle(GeometricObject):
     def __str__(self):
         return "Rectangle width: " + str(self.__width) + ", height: " + str(self.__height) + ", " + super().__str__()
 
+
 # Test Rectangle
 r = Rectangle(4, 7, "green", True)
 print(r)
 print("Area:", r.getArea(), "Perimeter:", r.getPerimeter())
 print("")
-
 
 # ==========================================================
 # 4. Demonstration: subclass vs superclass
@@ -123,32 +126,35 @@ print("Is Rectangle a GeometricObject?", isinstance(r, GeometricObject))
 print("Is GeometricObject a Circle?", isinstance(shape, Circle))
 print("Answer: Subclass instance IS a superclass instance, but not the reverse.\n")
 
-
 # ==========================================================
 # 5. Method Overriding Example & use of super()
 # ==========================================================
 
 print("=== 5. Method Overriding Demonstration ===")
 
+
 class DemoParent:
     def __init__(self, name):
         self.name = name
+
     def show(self):
         print("Parent show() ->", self.name)
+
 
 class DemoChild(DemoParent):
     def __init__(self, name, age):
         super().__init__(name)
         self.age = age
+
     def show(self):
         print("Child show() overrides parent. Name:", self.name, ", Age:", self.age)
         print("Now calling parent method explicitly using super():")
         super().show()
 
+
 test = DemoChild("Alice", 21)
 test.show()
 print("Answer: subclass’ method runs first, then super().\n")
-
 
 # ==========================================================
 # 6. Object class by default (superclass of all)
@@ -156,29 +162,69 @@ print("Answer: subclass’ method runs first, then super().\n")
 
 print("=== 6. Object Class & Default Inheritance ===")
 
-class Simple:
-    def __init__(self, value):
-        self.value = value
-    def __eq__(self, other):
-        return self.value == other.value
-    def __str__(self):
-        return "Simple object value = " + str(self.value)
 
-a = Simple(10)
-b = Simple(10)
-c = Simple(20)
-print(a)
+class A:
+    def __init__(self):
+        print("A's _init__() invoked")
+
+    def __new__(self):
+        # self.__init__(self)
+        print("A's _new__() invoked")
+
+
+class B(A):
+    def __init__(self):
+        print("B's _init__() invoked")
+
+    def __new__(self):
+        # self.__init__(self)
+        print("B's _new__() invoked")
+
+
+b = B()
+a = A()
+
 print("a == b ?", a == b)
-print("a == c ?", a == c)
-print("Superclass of Simple:", Simple.__base__)
 print("Answer: All classes inherit from object by default.\n")
-
 
 # ==========================================================
 # 7. Polymorphism & Dynamic Binding Example
 # ==========================================================
 
 print("=== 7. Polymorphism and Dynamic Binding ===")
+
+
+class C1:
+    def __init__(self):
+        self.f = 1
+
+    def output(self):
+        print("In C1, the f is:", self.f)
+
+
+class C2(C1):
+    def __init__(self):
+        self.f = 2
+
+    def output(self):
+        print("In C2, the f is:", self.f)
+
+
+class C3(C2):
+    def __init__(self):
+        self.f = 3
+
+
+class C4(C3):
+    def __init__(self):
+        self.f = 4
+
+
+a = C4()
+print(a.f)
+a.output()
+print("An example of dynamic binding\n")
+
 
 def displayObject(obj):
     print(obj)
@@ -191,6 +237,7 @@ def displayObject(obj):
         print("Rectangle-specific info contained above.")
     print("")
 
+
 # Passing subclass objects to a superclass reference
 geo_list = [Circle(2, "yellow", True), Rectangle(3, 4, "cyan", False)]
 for g in geo_list:
@@ -199,29 +246,74 @@ for g in geo_list:
 print("Answer: dynamic binding ensures correct subclass method runs at runtime.\n")
 
 
+class Person:
+    def getInfo(self):
+        return "Person"
+
+    def printPerson(self):
+        print(self.getInfo())
+
+
+class Student(Person):
+    def getInfo(self):
+        return "Student"
+
+
+Person().printPerson()
+Student().printPerson()
+
+
+class Person:
+    def __getInfo(self):
+        return "Person"
+
+    def printPerson(self):
+        print(self.__getInfo())
+
+
+print("When Student().printPerson() is called, Python uses dynamic binding — "
+      "it invokes the overridden getInfo() method in the subclass (Student).\n")
+
+
+class Student(Person):
+    def __getInfo(self):
+        return "Student"
+
+
+Person().printPerson()
+Student().printPerson()
+print("The printPerson() method in Person always calls its own version (_Person__getInfo), not the subclass’s method. "
+      "Dynamic binding does not occur because double underscore (__) makes the method private to the class.\n")
+
 # ==========================================================
 # 8. isinstance() Practice: Fruit Hierarchy
 # ==========================================================
 
 print("=== 8. isinstance() Function Practice ===")
 
+
 class Fruit:
     def eat(self):
         print("Fruit can be eaten.")
+
 
 class Apple(Fruit):
     def makeAppleCider(self):
         print("Making apple cider.")
 
+
 class GoldenDelicious(Apple):
     pass
+
 
 class McIntosh(Apple):
     pass
 
+
 class Orange(Fruit):
     def makeOrangeJuice(self):
         print("Making orange juice.")
+
 
 # Instances
 goldenDelicious = GoldenDelicious()
@@ -239,10 +331,10 @@ print("(h) Is orange instance of Apple? ->", isinstance(orange, Apple))
 
 # (i) Methods
 print("(i) goldenDelicious makeAppleCider()? ->", end=" ")
-goldenDelicious.makeAppleCider()   # yes
+goldenDelicious.makeAppleCider()  # yes
 print("orange makeAppleCider()? ->", end=" ")
 try:
-    orange.makeAppleCider()       # will fail
+    orange.makeAppleCider()  # will fail
 except AttributeError:
     print("No, Orange cannot makeAppleCider().")
 
@@ -256,33 +348,40 @@ except AttributeError:
     print("No, Apple‑derived class cannot makeOrangeJuice().")
 print("Answers printed above.\n")
 
-
 # ==========================================================
 # 9. Another Practice: Course Class Demonstration (inheritance usage)
 # ==========================================================
 
 print("=== 9. Practice: Course Class Example ===")
 
+
 class Course:
     def __init__(self, name):
         self.__name = name
         self.__students = []
+
     def addStudent(self, student):
         self.__students.append(student)
+
     def getStudents(self):
         return self.__students
+
     def getNumberOfStudents(self):
         return len(self.__students)
+
     def getCourseName(self):
         return self.__name
+
 
 # Simple subclass may extend behavior
 class OnlineCourse(Course):
     def __init__(self, name, platform):
         super().__init__(name)
         self.platform = platform
+
     def __str__(self):
         return "OnlineCourse: " + self.getCourseName() + " on " + self.platform
+
 
 c1 = OnlineCourse("Programming", "edX")
 c1.addStudent("Alice")
@@ -291,24 +390,33 @@ print(c1)
 print("Number of students:", c1.getNumberOfStudents())
 print("")
 
-
 # ==========================================================
 # 10. Multiple Inheritance Example
 # ==========================================================
 
 print("=== 10. Multiple Inheritance Example ===")
 
+
 class Speaker:
     def speak(self):
-        print("Speaking...")
+        print("Speaker Speaking...")
+
+    def teach(self):
+        print("Speaker Teaching...")
+
 
 class Teacher:
     def teach(self):
-        print("Teaching...")
+        print("Teacher Teaching...")
+
+    def speak(self):
+        print("Teacher Speaking...")
+
 
 class Lecturer(Speaker, Teacher):
     def lecture(self):
         print("Delivering lecture with both speaking and teaching skills.")
+
 
 # Test multiple inheritance
 lecturer = Lecturer()
