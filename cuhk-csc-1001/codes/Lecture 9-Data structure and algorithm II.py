@@ -6,6 +6,7 @@ Prof. Tongxin Li – School of Data Science
 All lecture code examples combined and numbered sequentially.
 """
 
+
 # ===============================================================
 # 1. Sum of a list using recursion (linear recursion)
 # ===============================================================
@@ -113,10 +114,13 @@ class Stack:
             raise IndexError("Stack is empty")
         return self._data.pop()
 
+    def __len__(self):
+        return len(self._data)
+
     def top(self):
         if self.is_empty():
             raise IndexError("Stack is empty")
-        return self._data[-1]
+        return self._data[self.__len__()-1]
 
     def __repr__(self):
         return f"Stack({self._data})"
@@ -145,7 +149,6 @@ def is_matched(expr: str) -> bool:
     """Check whether all brackets are balanced."""
     opening = "({["
     closing = ")}]"
-    mapping = {')': '(', ']': '[', '}': '{'}
     stack = Stack()
 
     for symbol in expr:
@@ -154,7 +157,7 @@ def is_matched(expr: str) -> bool:
         elif symbol in closing:
             if stack.is_empty():
                 return False
-            if stack.pop() != mapping[symbol]:
+            if opening.index(stack.pop()) != closing.index(symbol):
                 return False
     return stack.is_empty()
 
@@ -215,6 +218,7 @@ class Queue:
 import random
 import time
 
+
 def simulate_web_service(num_requests=5):
     """Simulate queue processing (first‑come, first‑served)."""
     q = Queue()
@@ -248,7 +252,51 @@ def demonstrate_structures():
 
 
 # ===============================================================
-# 13. Driver demonstration
+# 13. Stack using Queues
+# ===============================================================
+
+class StackUsingTwoQueues:
+    """Implement a Stack (LIFO) using two Queues (FIFO)."""
+
+    def __init__(self):
+        self.q1 = Queue()
+        self.q2 = Queue()
+
+    def is_empty(self):
+        return self.q1.is_empty()
+
+    def push(self, item):
+        """Push element onto stack. O(n) operation."""
+        # Step1: enqueue new item into q2
+        self.q2.enqueue(item)
+
+        # Step2: move all items from q1 → q2
+        while not self.q1.is_empty():
+            self.q2.enqueue(self.q1.dequeue())
+
+        # Step3: swap references (q1↔q2)
+        self.q1, self.q2 = self.q2, self.q1
+
+    def pop(self):
+        """Pop element from stack. O(1)."""
+        if self.q1.is_empty():
+            raise IndexError("Stack is empty")
+        return self.q1.dequeue()
+
+    def top(self):
+        """Peek at top element without removing it. O(1)."""
+        if self.q1.is_empty():
+            raise IndexError("Stack is empty")
+        # front of q1 is the top element, so q1._data[0]
+        return self.q1._data[0]
+
+    def __repr__(self):
+        # Represent like a stack: top shown at left
+        return f"StackUsingTwoQueues(top→ {list(self.q1._data)})"
+
+
+# ===============================================================
+# 14. Driver demonstration
 # ===============================================================
 
 def main():
@@ -284,6 +332,19 @@ def main():
 
     print("\nStack vs Queue order:")
     demonstrate_structures()
+
+    print("\nStack using Queues:")
+    s = StackUsingTwoQueues()
+    s.push(10)
+    s.push(20)
+    s.push(30)
+    print("Current stack:", s)   # Expected → [30, 20, 10]
+    print("Top element:", s.top())  # Expected → 30
+
+    print("Pop ->", s.pop())     # 30
+    print("Pop ->", s.pop())     # 20
+    print("Pop ->", s.pop())     # 10
+    print("Is empty?", s.is_empty())  # True
 
 
 # ===============================================================
