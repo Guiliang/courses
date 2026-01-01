@@ -63,11 +63,11 @@
    <body for="html-export">
       <div class="crossnote markdown-preview  ">
          <h1 id="java-gomoku-game">Java Gomoku Game </h1>
-         <h2 id="1-basic-features">1. Basic Features </h2>
+         <h2 id="1-basic-features">1. Required Features (20 pts in total) </h2>
          <p>You are expected to implement a gomoku game in Java. The name "gomoku" is from the Japanese language, in which it is referred to as "gomokunarabe": "go" means five, "moku" is a counter word for pieces and "narabe" means line-up. The game should support the following features:</p>
          <ul>
             <li>
-               <strong>Preliminary Gomoku Game Rules (10 Pts)</strong>: The logical layer of your program should support the following game rules:
+               <strong>Preliminary Gomoku Game Rules (5 Pts)</strong>: The logical layer of your program should support the following game rules:
                <ul>
                   <li>The game is played on a <strong>20x20</strong> board.</li>
                   <li>Two players take turns to place a stone on an empty intersection.</li>
@@ -76,7 +76,7 @@
                </ul>
             </li>
             <li>
-               <strong>Java GUI (10 Pts)</strong>:
+               <strong>Java GUI (5 Pts)</strong>:
 <!--               Although it's common to implement the Gomoku game in a command-line interface, -->
                You are <strong>required to implement a GUI</strong> for the game. The GUI should be implemented in Java FX (rather than Java Swing). It should support the following features, i.e. the GUI should be able to display:
                <ul>
@@ -95,50 +95,6 @@
                   <li>A player can only place a stone on an empty intersection. If a player clicks on an intersection that already has a stone, the program should reject the action and display a warning message.</li>
                </ul>
             </li>
-<!--            <li>-->
-<!--               <strong>Documentation, Presentation, and Code (5 Pts)</strong>: Besides the functionalities required to be implemented, the documentation, presentation and code specification are also important. Please do the the following things:-->
-<!--               <ul>-->
-<!--&lt;!&ndash;                  <li>Write a tutorial about the main features in your project, including how do you implement them and how to run your code. Please make sure TAs can run your code on their machine. <strong>(10%)</strong></li>&ndash;&gt;-->
-<!--                  <li>Prepare a presentation for your project by recording a video. The video should record the screen while your code is running on your laptop or desktop.</li>-->
-<!--                  <li>Prepare your code for submission. The main functions and classes in the code must have comments in a reader-friendly format.</li>-->
-<!--               </ul>-->
-<!--            </li>-->
-         </ul>
-         <h2 id="2-advanced-features">2. Advanced Features </h2>
-         <p>Note that you can earn 75% of the scores finishing all three projects with the only basic features.
-            That is to say, to get a higher score, you may want to consider adding some advanced features:
-            <font color="Brown">(Please pick some features from the followings.
-               The corresponding bonus scores will be added to your final score,
-               and the upper bound of your final score is 100 pts.
-               That's to say, you can get at most 100 pts by picking fives 5 pts features or a 10 pts feature with three 5 pts features.)</font>
-         </p>
-         <ul>
-            <li>
-               <strong>Undo and Redo (5 pts)</strong>: The GUI can support undo and redo operations via stacking the historical operations. The features are listed below:
-               <ul>
-                  <li>The player can undo the last move by clicking the undo button.</li>
-                  <li>The player can redo the last move by clicking the redo button.</li>
-                  <li>The player can undo and redo multiple moves.</li>
-               </ul>
-            </li>
-            <li>
-               <strong>Save and Load (5 pts)</strong>: The GUI can support saving and loading the game via serializing the game status. The features are listed below:
-               <ul>
-                  <li>The player can save the current game status by clicking the save button.</li>
-                  <li>The player can load the game status by clicking the load button.</li>
-                  <li>The game status should be saved in a file, and the player can choose the file to save or load. The checkpoint file design is up to you, but it'd better be readable rather than binary.</li>
-               </ul>
-            </li>
-            <li>
-               <strong>Invisible Mode (10 pts)</strong>: The GUI can support invisible mode, i.e. the player can play the game without seeing the board. The features are listed below:
-               <ul>
-                  <li>Each player now has a limited number of chances for viewing the board, e.g. 3 times.</li>
-                  <li>The player can view the board by clicking the view button, and the board will be visible at the current round for the current player's turn. It should disappear after the player places a stone successfully.</li>
-                  <li>Each viewing will cost one chance, and the player can view the board only when he/she has chances left.</li>
-                  <li>The player will receive a warning when he/she places a stone on an intersection that has been placed before when it's invisible</li>
-                  <li>There is some limited number of trials for the player to mistakenly place a stone on an intersection that has been placed before when it's invisible, e.g. 3 times. After that, the player will lose the turn of placing a stone immediately, and it would be the other player's turn.</li>
-               </ul>
-            </li>
             <li>
                <strong>Time Limit (5 pts)</strong>: The GUI can support time limit for each player, i.e. the player can only place a stone within a limited time. The features are listed below:
                <ul>
@@ -146,28 +102,14 @@
                   <li>The player can place a stone within the limited time, otherwise he/she will lose the turn of placing a stone immediately, and it would be the other player's turn.</li>
                </ul>
             </li>
-            <li>
-               <strong>AI Player (10 pts)</strong>: The GUI can support AI player, i.e. the player can play with the computer. The features are listed below:
-               <ul>
-                  <li>The player can choose to play with the computer or not.</li>
-                  <li>The AI player should be implemented by some algorithms. It's not required to use some reinforcement learning algorithms like monte carlo tree search, and you are suggested to use some simple heuristic algorithms, e.g. to block the opponent's five stones once the opponent has four stones in one line, or else to place a stone for one of your longest line.</li>
-               </ul>
-            </li>
-            <li>
-               <strong>User Friendly Interface (5 pts)</strong>: Do more for the GUI and register more mouse events to make the GUI more user friendly. The features are listed below:
-               <ul>
-                  <li>When the player hovers the mouse over the intersection, the intersection should be highlighted.</li>
-                  <li>When the player mistakenly places a stone on an intersection that has been placed before, there should be some flashing circle (an animation lasting for a short time) around the stone to indicate that it's invalid.</li>
-                  <li>Rendering the board and the stones on it with some animations, e.g. fading in and fading out.</li>
-               </ul>
-            </li>
-         </ul>
-         <h2 id="3-submission">3. Submission </h2>
+
+         <h2 id="2-submission">2. Submission </h2>
          <p>Submission should be made at the <a href="https://bb.cuhk.edu.cn/">blackboard system</a>. You need to submit:</p>
          <ul>
             <li><strong>Video</strong>: Prepare a presentation for your project by recording a video. Ensure the video captures your screen to demonstrate how the code runs on your laptop or desktop.
-                Please prepare a clear introduction, explaining the implemented features, including both basic and advanced ones.
-                If needed, add captions or provide a voiceover to enhance clarity and understanding. </li>
+<!--                Please prepare a clear introduction, explaining the implemented features, including both basic and advanced ones.-->
+<!--                If needed, add captions or provide a voiceover to enhance clarity and understanding. -->
+            </li>
             <li><strong>Code</strong>: Prepare your code for submission. The main functions and classes in the code must have comments in a reader-friendly format.</li>
          </ul>
 <!--         <h2 id="4-resources">4. Resources </h2>-->

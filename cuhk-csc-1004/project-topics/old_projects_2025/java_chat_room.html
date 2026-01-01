@@ -63,7 +63,7 @@
    <body for="html-export">
       <div class="crossnote markdown-preview  ">
          <h1 id="Java-chat-room"> Java Chat Rooms </h1>
-         <h2 id="1-basic-features">1. Required Features (20 pts in total) </h2>
+         <h2 id="1-basic-features">1. Basic Features </h2>
          <p>You are expected to implement a chat room using Java.
             This project requires you to execute
             <a href="https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)">multiple threads</a>
@@ -72,7 +72,7 @@
             The project should support the following features:</p>
          <ul>
             <li>
-               <strong>Multithreading Implementation (5 pts)</strong>.
+               <strong>Multithreading Implementation (10 pts)</strong>.
 <!--               Java multithreading is required in this project:-->
                <ul>
                   <li>Your program should be implemented based on Java multithreading techniques.</li>
@@ -81,7 +81,7 @@
                </ul>
             </li>
             <li>
-               <strong>Chat Room Functions (5 pts)</strong>
+               <strong>Chat Room Functions (10 pts)</strong>
 <!--               The Java chat room should have the following functions:-->
                <ul>
                   <li>When creating a new chat room command-line interface, the system will automatically assign this user an ID of 5 digits (e.g., 01234). In the meantime, the user is able to input a username via keyboard input. Both the ID and the username should be displayed before each message the user sends.</li>
@@ -96,13 +96,6 @@
                   <li>You program can display the current time when a user sends or receives a message (shown to all users in the chatroom).</li>
                </ul>
             </li>
-             <li><strong> Chat Record Storage (5 pts)</strong>:
-               <ul>
-                  <li>The user can save all the chat records to a local file so that a user can view all messages even when entering the chat room.</li>
-                   <li>The messages should be stored on the server side. The server should deliver these messages to a client when he or she enters the chatroom.</li>
-<!--                  <li>You program can display the current time when a user sends or receives a message (shown to all users in the chatroom).</li>-->
-               </ul>
-            </li>
 <!--            <li>-->
 <!--               <strong>Documentation, Presentation, and Code (20%)</strong>: Besides the functionalities required to be implemented, the documentation, presentation, and code specification are also important. Please do the following things:-->
 <!--               <ul>-->
@@ -112,29 +105,29 @@
 <!--               </ul>-->
 <!--            </li>-->
          </ul>
-<!--          <h2 id="2-advanced-features">2. Advanced Features </h2>-->
-<!--         <p>Note that you can earn 75% of the scores by finishing all three projects with the only basic features.-->
-<!--            That is to say, to get a higher score, you may want to consider adding some advanced features:-->
-<!--            <font color="Brown">(Please pick some features from the followings.-->
-<!--               The corresponding bonus scores will be added to your final score,-->
-<!--               and the upper bound of your final score is 100 pts.-->
-<!--               That's to say, you can get at most 100 pts by picking fives 5 pts features or a 10 pts feature with three 5 pts features.)</font>-->
-<!--         </p>-->
-<!--         <ul>-->
-<!--            <li><strong>Receiver Display (5 pts)</strong>: The user can check the receivers of his or her last message. In specific, by inputting the command "[print-receiver]:the-message" to the program, the program can display the name and id of receivers at the time this message was sent. The entering and leaving of chatroom users should not influence this function.</li>-->
-<!--            <li><strong>Chat Record Storage (5 pts) </strong>: The user can save all the chat records to a local file so that a user can view all messages even when entering the chat room. Note that <strong>the messages should be stored on the server side</strong>. The server should then deliver these messages to a client when he or she enters the chatroom</li>-->
-<!--            <li><strong> Search Function (5 pts) </strong>: The user can search chat logs by keyword or username. Hint: you can specify a certain keyboard input pattern to start searching. For example, let "#search (keyword or username)" be the input pattern.</li>-->
-<!--&lt;!&ndash;             <li><strong>Message Recall (5 pts) </strong>. The user can recall the message(s) that you have just sent to the chat room (i.e., delete messages from the chat room so that all users can no longer view that message). Hint: you can specify a certain keyboard input pattern to recall your message(s).</li>&ndash;&gt;-->
-<!--         </ul>-->
-         <h2 id="2-submission">2. Submission </h2>
+          <h2 id="2-advanced-features">2. Advanced Features </h2>
+         <p>Note that you can earn 75% of the scores by finishing all three projects with the only basic features.
+            That is to say, to get a higher score, you may want to consider adding some advanced features:
+            <font color="Brown">(Please pick some features from the followings.
+               The corresponding bonus scores will be added to your final score,
+               and the upper bound of your final score is 100 pts.
+               That's to say, you can get at most 100 pts by picking fives 5 pts features or a 10 pts feature with three 5 pts features.)</font>
+         </p>
+         <ul>
+            <li><strong>Receiver Display (5 pts)</strong>: The user can check the receivers of his or her last message. In specific, by inputting the command "[print-receiver]:the-message" to the program, the program can display the name and id of receivers at the time this message was sent. The entering and leaving of chatroom users should not influence this function.</li>
+            <li><strong>Chat Record Storage (5 pts) </strong>: The user can save all the chat records to a local file so that a user can view all messages even when entering the chat room. Note that <strong>the messages should be stored on the server side</strong>. The server should then deliver these messages to a client when he or she enters the chatroom</li>
+            <li><strong> Search Function (5 pts) </strong>: The user can search chat logs by keyword or username. Hint: you can specify a certain keyboard input pattern to start searching. For example, let "#search (keyword or username)" be the input pattern.</li>
+<!--             <li><strong>Message Recall (5 pts) </strong>. The user can recall the message(s) that you have just sent to the chat room (i.e., delete messages from the chat room so that all users can no longer view that message). Hint: you can specify a certain keyboard input pattern to recall your message(s).</li>-->
+         </ul>
+         <h2 id="3-submission">3. Submission </h2>
          <p>Submission should be made at the <a href="https://bb.cuhk.edu.cn/">blackboard system</a>. You need to submit:</p>
          <ul>
-            <li><strong>Video</strong>: Prepare a presentation for your project by recording a video. Ensure the video captures your screen to demonstrate how the code runs on your laptop or desktop.</li>
-<!--                Please prepare a clear introduction, explaining the implemented features, including both basic and advanced ones.-->
-<!--                If needed, add captions or provide a voiceover to enhance clarity and understanding. </li>-->
+            <li><strong>Video</strong>: Prepare a presentation for your project by recording a video. Ensure the video captures your screen to demonstrate how the code runs on your laptop or desktop.
+                Please prepare a clear introduction, explaining the implemented features, including both basic and advanced ones.
+                If needed, add captions or provide a voiceover to enhance clarity and understanding. </li>
             <li><strong>Code</strong>: Prepare your code for submission. The main functions and classes in the code must have comments in a reader-friendly format.</li>
          </ul>
-         <h2 id="3-resources">3. Resources </h2>
+         <h2 id="4-resources">4. Resources </h2>
          <ul>
             <li>JetBrains Java IDE (the Community Edition is enough for this project) at <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.</li>
             <li>Java Tutorial at <a href="https://www.w3schools.com/Java/">W3Schools</a>.</li>
